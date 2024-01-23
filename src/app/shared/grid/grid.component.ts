@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Vector2 } from 'three';
 import { Tile } from '../tile/tile.component';
 import UIService from '../services/UiService';
+import { GridVector, OGridVector } from './grid.dictionary';
 
 
 @Component({
@@ -32,62 +33,38 @@ export class GridComponent implements OnInit {
     }
   }
 
+  public setTileAndNeighborsHover(tile: Tile) {
+    this.grid.flat().forEach((tile: Tile) => {
+      tile.setHover(false);
+    });
+    tile.setHover(true);
+    this.getNeighborTileWithVector(tile, OGridVector.BOTTOM_LEFT)?.setHover(true);
+    this.getNeighborTileWithVector(tile, OGridVector.BOTTOM_RIGHT)?.setHover(true);
+    this.getNeighborTileWithVector(tile, OGridVector.LEFT)?.setHover(true);
+    this.getNeighborTileWithVector(tile, OGridVector.RRIGHT)?.setHover(true);
+    this.getNeighborTileWithVector(tile, OGridVector.TOP_LEFT)?.setHover(true);
+    this.getNeighborTileWithVector(tile, OGridVector.TOP_RIGHT)?.setHover(true);
+  }
+
   public setTileAndNeighborsActive(tile: Tile) {
     this.grid.flat().forEach((tile: Tile) => {
       tile.active = false;
     });
     tile.active = true;
-    if (tile.position.y % 2 === 0) {
-      if (this.grid[tile.position.y - 1] && this.grid[tile.position.y - 1][tile.position.x]) {
-        this.grid[tile.position.y - 1][tile.position.x].active = true;
-      }
-
-      if (this.grid[tile.position.y - 1] && this.grid[tile.position.y - 1][tile.position.x - 1]) {
-        this.grid[tile.position.y - 1][tile.position.x - 1].active = true;
-      }
-
-      if (this.grid[tile.position.y] && this.grid[tile.position.y][tile.position.x - 1]) {
-        this.grid[tile.position.y][tile.position.x - 1].active = true;
-      }
-
-      if (this.grid[tile.position.y] && this.grid[tile.position.y][tile.position.x + 1]) {
-        this.grid[tile.position.y][tile.position.x + 1].active = true;
-      }
-
-      if (this.grid[tile.position.y + 1] && this.grid[tile.position.y + 1][tile.position.x]) {
-        this.grid[tile.position.y + 1][tile.position.x].active = true;
-      }
-
-      if (this.grid[tile.position.y + 1] && this.grid[tile.position.y + 1][tile.position.x - 1]) {
-        this.grid[tile.position.y + 1][tile.position.x - 1].active = true;
-      }
-    } else {
-      if (this.grid[tile.position.y - 1] && this.grid[tile.position.y - 1][tile.position.x]) {
-        this.grid[tile.position.y - 1][tile.position.x].active = true;
-      }
-
-      if (this.grid[tile.position.y - 1] && this.grid[tile.position.y - 1][tile.position.x + 1]) {
-        this.grid[tile.position.y - 1][tile.position.x + 1].active = true;
-      }
-
-      if (this.grid[tile.position.y] && this.grid[tile.position.y][tile.position.x - 1]) {
-        this.grid[tile.position.y][tile.position.x - 1].active = true;
-      }
-
-      if (this.grid[tile.position.y] && this.grid[tile.position.y][tile.position.x + 1]) {
-        this.grid[tile.position.y][tile.position.x + 1].active = true;
-      }
-
-      if (this.grid[tile.position.y + 1] && this.grid[tile.position.y + 1][tile.position.x]) {
-        this.grid[tile.position.y + 1][tile.position.x].active = true;
-      }
-
-      if (this.grid[tile.position.y + 1] && this.grid[tile.position.y + 1][tile.position.x + 1]) {
-        this.grid[tile.position.y + 1][tile.position.x + 1].active = true;
-      }
-
-    }
+    this.getNeighborTileWithVector(tile, OGridVector.BOTTOM_LEFT)?.setActive(true);
+    this.getNeighborTileWithVector(tile, OGridVector.BOTTOM_RIGHT)?.setActive(true);
+    this.getNeighborTileWithVector(tile, OGridVector.LEFT)?.setActive(true);
+    this.getNeighborTileWithVector(tile, OGridVector.RRIGHT)?.setActive(true);
+    this.getNeighborTileWithVector(tile, OGridVector.TOP_LEFT)?.setActive(true);
+    this.getNeighborTileWithVector(tile, OGridVector.TOP_RIGHT)?.setActive(true);
 
   }
 
+  private getNeighborTileWithVector(originTile: Tile, gridVEctor: GridVector): null|Tile {
+      const leftShift: number = originTile.position.y % 2 === 0 && gridVEctor.y !== 0 ? -1 : 0;
+      if(originTile.position.y + gridVEctor.y < 0 || originTile.position.y + gridVEctor.y === this.rows) return null;
+      if(originTile.position.x + leftShift + gridVEctor.x < 0 || originTile.position.x + leftShift + gridVEctor.x === this.cols) return null;
+
+      return this.grid[originTile.position.y + gridVEctor.y][originTile.position.x + gridVEctor.x + leftShift];   
+  }
 }
