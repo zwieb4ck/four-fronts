@@ -1,0 +1,15 @@
+body {
+    Background-color: #34495e;
+    displaY: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main {
+    display: flex;
+    --s: 100px;
+    /* size  */
+    --m: 1px;
+    /* margin */
+    --f: calc(1.732 * var(--s) + 4 * var(--m) - 1px);
+}
