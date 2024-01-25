@@ -37,26 +37,14 @@ export class GridComponent implements OnInit {
     this.grid.flat().forEach((tile: Tile) => {
       tile.setHover(false);
     });
-    tile.setHover(true);
-    this.getNeighborTileWithVector(tile, OGridVector.BOTTOM_LEFT)?.setHover(true);
-    this.getNeighborTileWithVector(tile, OGridVector.BOTTOM_RIGHT)?.setHover(true);
-    this.getNeighborTileWithVector(tile, OGridVector.LEFT)?.setHover(true);
-    this.getNeighborTileWithVector(tile, OGridVector.RRIGHT)?.setHover(true);
-    this.getNeighborTileWithVector(tile, OGridVector.TOP_LEFT)?.setHover(true);
-    this.getNeighborTileWithVector(tile, OGridVector.TOP_RIGHT)?.setHover(true);
+    this.getNeighborsInRadius(tile, 2).forEach(tile => tile.setHover(true));
   }
 
   public setTileAndNeighborsActive(tile: Tile) {
     this.grid.flat().forEach((tile: Tile) => {
       tile.active = false;
     });
-    tile.active = true;
-    this.getNeighborTileWithVector(tile, OGridVector.BOTTOM_LEFT)?.setActive(true);
-    this.getNeighborTileWithVector(tile, OGridVector.BOTTOM_RIGHT)?.setActive(true);
-    this.getNeighborTileWithVector(tile, OGridVector.LEFT)?.setActive(true);
-    this.getNeighborTileWithVector(tile, OGridVector.RRIGHT)?.setActive(true);
-    this.getNeighborTileWithVector(tile, OGridVector.TOP_LEFT)?.setActive(true);
-    this.getNeighborTileWithVector(tile, OGridVector.TOP_RIGHT)?.setActive(true);
+    this.getNeighborsInRadius(tile, 1).forEach(tile => tile.setActive(true));
 
   }
 
@@ -66,5 +54,31 @@ export class GridComponent implements OnInit {
       if(originTile.position.x + leftShift + gridVEctor.x < 0 || originTile.position.x + leftShift + gridVEctor.x === this.cols) return null;
 
       return this.grid[originTile.position.y + gridVEctor.y][originTile.position.x + gridVEctor.x + leftShift];   
+  }
+
+  private getNeighborsInRadius(originTile: Tile, radius: number): Tile[] {
+    let result: Tile[] = [];
+    result.push(originTile);
+    for(let i = 0; i < radius; i++) {
+      result.forEach(res => {
+        const neighbors = this.getNeighbors(res);
+        result = result.concat(neighbors);
+      });
+    }
+
+    return result.filter((tile, index, array) => array.indexOf(tile) === index);
+  }
+
+  private getNeighbors(originTile: Tile): Tile[] {
+    const result: (Tile|null)[] = [];
+    result.push(originTile);
+    result.push(this.getNeighborTileWithVector(originTile, OGridVector.BOTTOM_LEFT));
+    result.push(this.getNeighborTileWithVector(originTile, OGridVector.BOTTOM_RIGHT));
+    result.push(this.getNeighborTileWithVector(originTile, OGridVector.LEFT));
+    result.push(this.getNeighborTileWithVector(originTile, OGridVector.RRIGHT));
+    result.push(this.getNeighborTileWithVector(originTile, OGridVector.TOP_LEFT));
+    result.push(this.getNeighborTileWithVector(originTile, OGridVector.TOP_RIGHT));
+
+    return result.flatMap(res => res ? [res] : []);
   }
 }
