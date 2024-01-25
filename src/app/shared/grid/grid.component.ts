@@ -56,8 +56,8 @@ export class GridComponent implements OnInit {
       return this.grid[originTile.position.y + gridVEctor.y][originTile.position.x + gridVEctor.x + leftShift];   
   }
 
-  private getNeighborsInRadius(originTile: Tile, radius: number): Array<Tile> {
-    let result = new Array<Tile>();
+  private getNeighborsInRadius(originTile: Tile, radius: number): Tile[] {
+    let result: Tile[] = [];
     result.push(originTile);
     for(let i = 0; i < radius; i++) {
       result.forEach(res => {
@@ -69,8 +69,8 @@ export class GridComponent implements OnInit {
     return result.filter((tile, index, array) => array.indexOf(tile) === index);
   }
 
-  private getNeighbors(originTile: Tile): Array<Tile> {
-    const result = new Array<null|Tile>();
+  private getNeighbors(originTile: Tile): Tile[] {
+    const result: (Tile|null)[] = [];
     result.push(originTile);
     result.push(this.getNeighborTileWithVector(originTile, OGridVector.BOTTOM_LEFT));
     result.push(this.getNeighborTileWithVector(originTile, OGridVector.BOTTOM_RIGHT));
