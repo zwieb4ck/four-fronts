@@ -25,3 +25,5 @@ Genearte secrets for tokens and refreshtokens as you please.
 For mongodb register an account and a cluster at (MongoDB Atlas)[https://www.mongodb.com/] or ask me for my cluster.
 
 ## Login and enjoy!
+
+To develop the project please fork it, create a branch and create a pull request afterwards. Thank you!
