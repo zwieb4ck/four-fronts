@@ -1,12 +1,12 @@
-<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 center">
   <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-    <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Register your account</h2>
+    <h2 class="text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Register your account</h2>
   </div>
 
-  <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-    <form class="space-y-6" onsubmit="return false" [formGroup]="registerForm">
+  <div class="mt-4 sm:mx-auto sm:w-full sm:max-w-sm">
+    <form class="space-y-2" onsubmit="return false" [formGroup]="registerForm">
 
-      <div class="bg-red-100 border border-red-400 text-red-700 mb-8 px-4 py-3 rounded relative" role="alert"
+      <div class="bg-red-100 border border-red-400 text-red-700 mb-2 px-4 py-3 rounded relative" role="alert"
         *ngIf="error">
         <span class="block sm:inline">{{error}}</span>
       </div>
@@ -54,6 +54,11 @@
             <span class="sr-only">Loading...</span>
           </div>
         </button>
+      </div>
+      <div class="text-sm py-2">
+        <div>
+          You have already an account? <a [routerLink]="'/login'" class="font-semibold text-indigo-600 hover:text-indigo-500">Log in!</a>
+        </div>
       </div>
     </form>
   </div>
