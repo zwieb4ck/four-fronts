@@ -26,6 +26,10 @@
 .tile--disabled {
   opacity: 0;
 }
+
+.tile--hover {
+  background: green;
+}
 .tile--active {
   background: red;
 }

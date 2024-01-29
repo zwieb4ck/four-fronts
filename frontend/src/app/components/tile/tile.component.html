@@ -1,3 +1,3 @@
 <ng-container>
-    <button class="tile" (click)="handleClick()" [ngClass]="{'tile--active': tile.active}">{{tile.position.x}}/{{tile.position.y}}</button>
+    <button class="tile" (mouseenter)="handleHover()" (click)="handleClick()" [ngClass]="{'tile--active': tile.active, 'tile--hover': tile.hover && !tile.active}">{{tile.position.x}}/{{tile.position.y}}</button>
 </ng-container>

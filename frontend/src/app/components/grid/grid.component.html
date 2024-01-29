@@ -1,3 +1,3 @@
 <div *ngFor="let rows of grid" [style]="{width: calcultedWidth}">
-    <app-tile [tile]="tile"  *ngFor="let tile of rows" (clicked)="setTileAndNeighborsActive($event)" />
+    <app-tile [tile]="tile"  *ngFor="let tile of rows" (clicked)="setTileAndNeighborsActive($event)" (hover)="setTileAndNeighborsHover($event)"/>
 </div>
