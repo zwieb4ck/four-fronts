@@ -1,0 +1,28 @@
+:host {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 576px;
+    width: 1268px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+:host > button {
+    pointer-events: all;
+}
+
+.logout {
+    border-radius: 50%;
+    background-color: #3498db;
+    color: white;
+    font-size: 42px;
+    height: 54px;
+    width: 54px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 100px;
+    top: 50px;
+    position: absolute;
+}

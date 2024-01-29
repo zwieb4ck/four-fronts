@@ -1,0 +1,54 @@
+:host,
+.app,
+.router {
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
+.app>*:not(router-outlet) {
+  min-height: 100vh;
+}
+
+.game-wrapper {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  height: 576px;
+  width: 1268px;
+  border: none;
+}
+
+.game-wrapper,
+.game-wrapper ::before,
+.game-wrapper ::after {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: none;
+  border-color: transparent;
+}
+
+.border {
+  position: absolute;
+  top: 0;
+  lefT: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 99;
+  pointer-events: none;
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: none;
+  border-color: transparent;
+}
+
+#game-window {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 25px;
+  height: 526px;
+  width: 1218px;
+  border-radius: 50px;
+  overflow: hidden;
+}

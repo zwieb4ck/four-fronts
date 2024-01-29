@@ -1,0 +1,25 @@
+POST http://localhost:5000/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "pwolter@hotmail.de",
+  "password": "Test1234"
+}
+
+###
+
+POST http://localhost:5000/v1/auth/refresh
+Content-Type: application/json
+
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTI2MzhlZDhhZTMyYmMxY2UzM2I5NWEiLCJpYXQiOjE2OTcwMTQ4ODQsImV4cCI6MTY5NzAxNDg5OX0.fwX91Bh9xgXsrdXPhUp0Aoc7MRBqnPeaQhwdd587jJg"
+}
+
+###
+
+delete http://localhost:5000/v1/auth/logout
+Content-Type: application/json
+
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTI1OWFjMzllMGVkZDg3ZTZiZTE1ZDgiLCJpYXQiOjE2OTY5NjU5OTEsImV4cCI6MTY5NzU3MDc5MX0.xCzUxBzQM80cRqiYMCd0uTn0vU-JIQCpHWZdztLiZbg"
+}

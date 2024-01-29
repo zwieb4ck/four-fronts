@@ -1,0 +1,8 @@
+<div class="planet">
+	<app-overlay (logout)="logout()"></app-overlay>
+	<app-grid [rows]="rows" [cols]="cols" [width]="calcultedWidth" [style]="{
+        zoom: UIservice.zoomFactor,
+        transform:
+            'translate(' + mapPosition.x + 'px,' + mapPosition.y + 'px'
+    }"></app-grid>
+</div>

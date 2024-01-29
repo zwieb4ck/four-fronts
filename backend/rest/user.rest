@@ -1,0 +1,14 @@
+GET http://localhost:5000/v1/user
+
+###
+
+POST http://localhost:5000/v1/user
+Content-Type: application/json
+
+{
+  "name": "Paul-Christian Wolter",
+  "email": "pwolter+1@hotmail.de",
+  "password": "Test1234"
+}
+
+###
