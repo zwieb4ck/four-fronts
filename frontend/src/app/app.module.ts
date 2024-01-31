@@ -19,6 +19,8 @@ import { ForgotPasswordComponent } from './views/login/forgot-password/forgot-pa
 import { GridComponent } from './components/grid/grid.component';
 import { TileComponent } from './components/tile/tile.component';
 import { OverlayComponent } from './components/overlay/overlay.component';
+import { SolarSystemComponent } from './views/dashboard/solar-system/solar-system.component';
+import { PlanetComponent } from './views/dashboard/planet/planet.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { OverlayComponent } from './components/overlay/overlay.component';
     ForgotPasswordComponent,
     GridComponent,
     TileComponent,
-    OverlayComponent
+    OverlayComponent,
+    SolarSystemComponent,
+    PlanetComponent
   ],
   imports: [
     BrowserModule,

@@ -1,1 +1,4 @@
-<button class="logout" (click)="callLogout()"><app-icon>logout</app-icon></button>
+<div class="overlay">
+    <button class="overlay__button overlay__button--solar-system" (click)="showSolarSystem()" *ngIf="showSolarSystemActive"><app-icon>captive_portal</app-icon></button>
+    <button class="overlay__button overlay__button--logout" (click)="callLogout()"><app-icon>logout</app-icon></button>
+</div>

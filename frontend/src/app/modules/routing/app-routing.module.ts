@@ -7,6 +7,8 @@ import { RegisterComponent } from 'src/app/views/register/register.component';
 import { NotFoundComponent } from 'src/app/views/not-found/not-found.component';
 import { UnauthorizedComponent } from 'src/app/views/unauthorized/unauthorized.component';
 import { ForgotPasswordComponent } from 'src/app/views/login/forgot-password/forgot-password.component';
+import { SolarSystemComponent } from 'src/app/views/dashboard/solar-system/solar-system.component';
+import { PlanetComponent } from 'src/app/views/dashboard/planet/planet.component';
 
 const routes: Routes = [
   {
@@ -17,6 +19,21 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardPageComponent,
+    children: [
+      {
+        path: '',
+        component: PlanetComponent,
+      },
+      {
+        path: 'planet',
+        component: PlanetComponent,
+      },
+      {
+        path: 'solar-system',
+        component: SolarSystemComponent,
+      }
+
+    ]
   },
   {
     path: 'login',

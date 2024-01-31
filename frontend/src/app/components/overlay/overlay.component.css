@@ -8,11 +8,18 @@
     pointer-events: none;
 }
 
-:host > button {
-    pointer-events: all;
+.overlay {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    left: 100px;
+    top: 20px;
+    width: calc(100% - 200px);
+    gap: 10px;
 }
-
-.logout {
+.overlay__button {
+    pointer-events: all;
     border-radius: 50%;
     background-color: #3498db;
     color: white;
@@ -22,7 +29,4 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    right: 100px;
-    top: 50px;
-    position: absolute;
 }

@@ -1,6 +1,4 @@
-.planet {
-    display:flex;
-    --s: 100px;  /* size  */
-    --m: 1px;    /* margin */
-    --f: calc(1.732 * var(--s) + 4 * var(--m)  - 1px);
-  }
+:host, .dashboard {
+    height: 100%;
+    width: 100%;
+}
