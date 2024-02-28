@@ -1,6 +1,8 @@
+### get user info
+
 GET http://localhost:5000/v1/user
 
-###
+### create user
 
 POST http://localhost:5000/v1/user
 Content-Type: application/json

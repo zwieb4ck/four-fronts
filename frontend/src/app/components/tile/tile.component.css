@@ -21,15 +21,18 @@
   align-items: center;
   outline: none;
   border: none;
+  font-size: 10px;
+  opacity: 0.4;
 }
 
-.tile--disabled {
-  opacity: 0;
+.tile--revealed {
+  opacity: 1;
 }
 
-.tile--hover {
-  background: green;
+.tile--resource {
+  border: 15px solid green;
 }
-.tile--active {
-  background: red;
+
+.tile--power {
+  background-color: rgb(164, 176, 255);
 }

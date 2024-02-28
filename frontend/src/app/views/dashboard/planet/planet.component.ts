@@ -35,13 +35,18 @@ export class PlanetComponent {
 
   constructor(public UIservice: UIService, public ref: ElementRef, public authService: AuthService) {
     document.addEventListener('mousedown', (event: MouseEvent) => {
-      if (event.which === 2) {
+      if (event.which === 3) {
         event.preventDefault();
         this.startMovePos = new Vector2(event.pageX, event.pageY);
         this.startVector = this.mapPosition;
         this.isDragging = true;
       }
     });
+    document.addEventListener("contextmenu", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      return false;
+    })
     document.addEventListener('mousemove', (e: MouseEvent) => {
       if (this.isDragging) {
         this.distanceVector = new Vector2(

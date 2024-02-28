@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Vector2 } from 'three';
-import { Tile } from '../tile/tile.component';
+import { ITile, Tile } from '../tile/tile.component';
 import UIService from '../services/UiService';
 import { GridVector, OGridVector } from './grid.dictionary';
 
+import { default as grid } from "../../../assets/mockdata/grid";
 
 @Component({
   selector: 'app-grid',
@@ -22,22 +23,26 @@ export class GridComponent implements OnInit {
   public grid: Tile[][] = [];
 
   public ngOnInit() {
-    for (let y = 0; y < this.rows; y++) {
-      const row = [];
+    grid.forEach((row, index) => {
+      this.grid[index] = row.map((data: any) => new Tile(data));
+    })
+    // for (let y = 0; y < this.rows; y++) {
+    //   const row = [];
 
-      for (let x = 0; x < this.cols - (y % 2); x++) {
-        row.push(new Tile(new Vector2(x, y)));
-      }
+    //   for (let x = 0; x < this.cols - (y % 2); x++) {
+    //     row.push(new Tile(new Vector2(x, y)));
+    //   }
 
-      this.grid.push(row);
-    }
+    //   this.grid.push(row);
+    // }
+    // console.log(this.grid)
   }
 
   public setTileAndNeighborsHover(tile: Tile) {
     this.grid.flat().forEach((tile: Tile) => {
       tile.setHover(false);
     });
-    this.getNeighborsInRadius(tile, 2).forEach(tile => tile.setHover(true));
+    this.getNeighborsInRadius(tile, 5).forEach(tile => tile.setHover(true));
   }
 
   public setTileAndNeighborsActive(tile: Tile) {
