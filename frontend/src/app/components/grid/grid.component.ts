@@ -25,6 +25,8 @@ export class GridComponent implements OnInit {
   public ngOnInit() {
     grid.forEach((row, index) => {
       this.grid[index] = row.map((data: any) => new Tile(data));
+      this.grid[index].filter(tile => tile.isRevealed).forEach(tile => tile.createMockData())
+
     })
     // for (let y = 0; y < this.rows; y++) {
     //   const row = [];
@@ -42,14 +44,14 @@ export class GridComponent implements OnInit {
     this.grid.flat().forEach((tile: Tile) => {
       tile.setHover(false);
     });
-    this.getNeighborsInRadius(tile, 5).forEach(tile => tile.setHover(true));
+    // this.getNeighborsInRadius(tile, 5).forEach(tile => tile.setHover(true));
   }
 
   public setTileAndNeighborsActive(tile: Tile) {
     this.grid.flat().forEach((tile: Tile) => {
       tile.active = false;
     });
-    this.getNeighborsInRadius(tile, 1).forEach(tile => tile.setActive(true));
+    // this.getNeighborsInRadius(tile, 1).forEach(tile => tile.setActive(true));
 
   }
 
@@ -61,29 +63,29 @@ export class GridComponent implements OnInit {
       return this.grid[originTile.position.y + gridVEctor.y][originTile.position.x + gridVEctor.x + leftShift];   
   }
 
-  private getNeighborsInRadius(originTile: Tile, radius: number): Tile[] {
-    let result: Tile[] = [];
-    result.push(originTile);
-    for(let i = 0; i < radius; i++) {
-      result.forEach(res => {
-        const neighbors = this.getNeighbors(res);
-        result = result.concat(neighbors);
-      });
-    }
+  // private getNeighborsInRadius(originTile: Tile, radius: number): Tile[] {
+  //   let result: Tile[] = [];
+  //   result.push(originTile);
+  //   for(let i = 0; i < radius; i++) {
+  //     result.forEach(res => {
+  //       const neighbors = this.getNeighbors(res);
+  //       result = result.concat(neighbors);
+  //     });
+  //   }
 
-    return result.filter((tile, index, array) => array.indexOf(tile) === index);
-  }
+  //   return result.filter((tile, index, array) => array.indexOf(tile) === index);
+  // }
 
-  private getNeighbors(originTile: Tile): Tile[] {
-    const result: (Tile|null)[] = [];
-    result.push(originTile);
-    result.push(this.getNeighborTileWithVector(originTile, OGridVector.BOTTOM_LEFT));
-    result.push(this.getNeighborTileWithVector(originTile, OGridVector.BOTTOM_RIGHT));
-    result.push(this.getNeighborTileWithVector(originTile, OGridVector.LEFT));
-    result.push(this.getNeighborTileWithVector(originTile, OGridVector.RRIGHT));
-    result.push(this.getNeighborTileWithVector(originTile, OGridVector.TOP_LEFT));
-    result.push(this.getNeighborTileWithVector(originTile, OGridVector.TOP_RIGHT));
+  // private getNeighbors(originTile: Tile): Tile[] {
+  //   // const result: (Tile|null)[] = [];
+  //   // result.push(originTile);
+  //   // result.push(this.getNeighborTileWithVector(originTile, OGridVector.BOTTOM_LEFT));
+  //   // result.push(this.getNeighborTileWithVector(originTile, OGridVector.BOTTOM_RIGHT));
+  //   // result.push(this.getNeighborTileWithVector(originTile, OGridVector.LEFT));
+  //   // result.push(this.getNeighborTileWithVector(originTile, OGridVector.RRIGHT));
+  //   // result.push(this.getNeighborTileWithVector(originTile, OGridVector.TOP_LEFT));
+  //   // result.push(this.getNeighborTileWithVector(originTile, OGridVector.TOP_RIGHT));
 
-    return result.flatMap(res => res ? [res] : []);
-  }
+  //   // return result.flatMap(res => res ? [res] : []);
+  // }
 }
