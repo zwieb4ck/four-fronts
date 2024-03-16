@@ -1,0 +1,7 @@
+### get random solar system
+
+GET http://localhost:5000/v1/solar-system
+
+### get solar system with seed
+
+GET http://localhost:5000/v1/solar-system/ololollo
