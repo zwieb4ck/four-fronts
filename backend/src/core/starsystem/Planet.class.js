@@ -12,6 +12,14 @@ const PLANET_TYPES = {
     DWARFPLANET: "DwarfPlanet",
 }
 
+const STARTER_PLANETS = [
+    PLANET_TYPES.TERRESTRIALPLANET,
+    PLANET_TYPES.ICEGIANT,
+    PLANET_TYPES.EXOPLANET,
+    PLANET_TYPES.HABITABLEPLANET,
+    PLANET_TYPES.DESERTPLANET,
+]
+
 function randomColor() {
     const minHelligkeit = 200; // Mindesthelligkeit (0-255)
     const hexBuchstaben = "0123456789ABCDEF";
@@ -35,6 +43,7 @@ function randomColor() {
 class Planet {
     static type = PLANET_TYPES;
 
+
     static getRandomGravity() {
         return 1;
     }
@@ -56,6 +65,7 @@ class Planet {
         this.distance = distance;
         this.speed = speed;
         this.mass = mass;
+        this.moons = [];
     }
 
     static calculateOrbitalSpeed(distanceAU, sunMass) {
@@ -139,6 +149,7 @@ function getPlanets(type, minGap, amount, sun, seed) {
         const distance = prng.nextRange(distanceRange.min, distanceRange.max);
         const mass = prng.nextRange(planet.minMass, planet.maxMass);
         const newPlanet = new Planet(planetType, distance, Planet.calculateOrbitalSpeed(distance, sun.mass), mass)
+        newPlanet.coords = seed + '/' + (i + 1);
         result.push(newPlanet);
         lastMax = distance;
     }
@@ -146,4 +157,4 @@ function getPlanets(type, minGap, amount, sun, seed) {
     return result;
 }
 
-module.exports = {PLANET_TYPES, Planet, planetDistances, getPlanets}
+module.exports = {PLANET_TYPES, Planet, planetDistances, getPlanets, STARTER_PLANETS}

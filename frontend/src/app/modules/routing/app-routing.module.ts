@@ -9,6 +9,7 @@ import { UnauthorizedComponent } from 'src/app/views/unauthorized/unauthorized.c
 import { ForgotPasswordComponent } from 'src/app/views/login/forgot-password/forgot-password.component';
 import { SolarSystemComponent } from 'src/app/views/dashboard/solar-system/solar-system.component';
 import { PlanetComponent } from 'src/app/views/dashboard/planet/planet.component';
+import { QuadrantComponent } from 'src/app/views/dashboard/quadrant/quadrant.component';
 
 const routes: Routes = [
   {
@@ -21,16 +22,23 @@ const routes: Routes = [
     component: DashboardPageComponent,
     children: [
       {
-        path: '',
-        component: PlanetComponent,
+        path: ':quadrant',
+        component: QuadrantComponent,
       },
       {
-        path: 'planet',
-        component: PlanetComponent,
-      },
-      {
-        path: 'solar-system',
+        path: ':quadrant/:system',
         component: SolarSystemComponent,
+        data: {
+          name: 'SolarSystem',
+        }
+        
+      },
+      {
+        path: ':quadrant/:system/:planet',
+        component: PlanetComponent,
+        data: {
+          name: 'Planet',
+        }
       }
 
     ]

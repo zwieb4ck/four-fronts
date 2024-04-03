@@ -13,6 +13,7 @@ export interface ILoginResponse {
   email: string;
   isAdmin?: boolean;
   isSuperAdmin?: boolean;
+  startSystem: string,
   name: string;
   _id: string;
 }

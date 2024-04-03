@@ -4,11 +4,12 @@ class PseudoRandom {
       this.m = 0x80000000;
       this.a = 1103515245;
       this.c = 12345;
+      this.secret = process.env.PRNG_SECRET;
 
       if(seed) {
-        this.state = typeof seed === "string" ? this.generateConsistentNumberFromString(seed) : seed;
+        this.state = this.generateConsistentNumberFromString(seed + this.secret);
       } else {
-        this.state = Math.floor(Math.random() * (this.m - 1));
+        this.state = this.generateConsistentNumberFromString(Math.floor(Math.random() * (this.m - 1))+ this.secret);
       }
     }
   

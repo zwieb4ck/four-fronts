@@ -12,12 +12,14 @@ export class User {
   public name: string = '';
   public email: string = '';
   public _id: string = '';
+  public startSystem: string = '';
 
   constructor(loginData: ILoginResponse) {
     this.isSuperAdmin = loginData.isSuperAdmin || false;
     this.isAdmin = loginData.isAdmin || false;
     this.name = loginData.name;
     this.email = loginData.email;
+    this.startSystem = loginData.startSystem;
     this._id = loginData._id;
   }
 
@@ -59,6 +61,17 @@ export default class AuthService extends HTTPService {
       );
     }
     return this._user;
+  }
+
+  public get startSystem(): string {
+    if (this.startPlanet.includes('/')) {
+      const [quadrant, system, planet]  = this.startPlanet.split('/');
+      return [quadrant, system].join('/');
+    }
+    return "";
+  }
+  public get startPlanet(): string {
+    return this.user?.startSystem || "";
   }
 
   public adaptLoginData(loginData: ILoginResponse): void {

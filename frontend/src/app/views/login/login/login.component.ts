@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
       .subscribe((data) => {
         if (data.body) {
           this.authService.adaptLoginData(data.body);
-          this.router.navigate(['dashboard']);
+          this.router.navigate(['dashboard/',...data.body.startSystem.split('/')]);
         }
       });
   }

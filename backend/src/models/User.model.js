@@ -26,6 +26,7 @@ const userSchema = new mongoose.Schema({
   refreshToken: String,
   isAdmin: Boolean,
   isSuperAdmin: Boolean,
+  startSystem: String,
 });
 
 module.exports = mongoose.model("User", userSchema);

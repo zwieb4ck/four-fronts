@@ -1,0 +1,15 @@
+<ul class="grid grid-cols-4 gap-4 m-20 mt-24">
+    <li  class="bg-white p-2 cursor-pointer" *ngFor="let starSystem of systems" (click)="navigateTo(starSystem.cords)">
+    <div class="flex min-w-0 gap-x-4">
+        <img class="h-12 w-12 flex-none rounded-full bg-gray-50" [src]="'assets/images/' + getImage(starSystem.sun.type)" alt="">
+        <div class="min-w-0 flex-auto">
+          <p class="text-sm font-semibold leading-6 text-gray-900">{{ starSystem.sun.type}}</p>
+          <p class="mt-1 truncate text-xs leading-5 text-gray-500">{{starSystem.planets.length}} Planets</p>
+        </div>
+      </div>
+      <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
+        <p class="mt-1 text-xs leading-5 text-gray-500">Coordinates: {{starSystem.cords}}</p>
+        <p class="text-sm leading-6 text-gray-900;" [ngClass]=" {invisible: starSystem.cords !== authService.startSystem}">Your system</p>
+      </div>
+    </li>
+  </ul>  

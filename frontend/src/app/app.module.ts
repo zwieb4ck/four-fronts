@@ -21,6 +21,7 @@ import { TileComponent } from './components/tile/tile.component';
 import { OverlayComponent } from './components/overlay/overlay.component';
 import { SolarSystemComponent } from './views/dashboard/solar-system/solar-system.component';
 import { PlanetComponent } from './views/dashboard/planet/planet.component';
+import { QuadrantComponent } from './views/dashboard/quadrant/quadrant.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { PlanetComponent } from './views/dashboard/planet/planet.component';
     TileComponent,
     OverlayComponent,
     SolarSystemComponent,
-    PlanetComponent
+    PlanetComponent,
+    QuadrantComponent
   ],
   imports: [
     BrowserModule,

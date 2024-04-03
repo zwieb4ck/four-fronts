@@ -2,6 +2,7 @@ const express = require("express");
 const authRoute = require("./auth.route");
 const userRoute = require("./users.route");
 const solarSystemRoute = require("./solar-system.route");
+const quadranRoute = require("./quadrant.route");
 
 const router = express.Router();
 
@@ -17,6 +18,9 @@ const defaultIRoute = [
   {
     path: "/solar-system",
     route: solarSystemRoute,
+  }, {
+    path: "/quadrant",
+    route: quadranRoute,
   }
 ];
 

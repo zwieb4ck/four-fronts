@@ -1,5 +1,6 @@
 .solar-system {
-    background: black;
+    background-color: black;
+    background-image: url('/assets/galaxy.png');
     display: block;
     height: 100%;
     width: 100%;

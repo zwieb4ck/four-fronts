@@ -2,8 +2,9 @@ const express = require('express');
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User.model");
-const { generateAccessToken, generateRefreshToken } = require("../utils")
-
+const { generateAccessToken, generateRefreshToken, randomCordinates } = require("../utils")
+const { StarSystemFactory } = require("../core/starsystem/StarSystem.class");
+const { STARTER_PLANETS } = require("../core/starsystem/Planet.class");
 const router = express.Router();
 
 class UserResponse {
@@ -15,6 +16,7 @@ class UserResponse {
         token: token.token,
         refresh: token.refreshToken,
       }
+      this.startSystem = user.startSystem;
   }
 }
 
@@ -34,6 +36,24 @@ async function login(req, res) {
         token: generateAccessToken(user.id),
         refreshToken: generateRefreshToken(user.id)
       }
+      if(!user.startSystem || user.startSystem.length === 0) {
+
+        let startSystem = '';
+        const tries = 0;
+        while(tries < 1000) {
+          startSystem = randomCordinates();
+          const system = StarSystemFactory.createStarSystem(startSystem);
+          starterPlanets = system.planets.filter(p => STARTER_PLANETS.includes(p.type));
+          if (starterPlanets.length > 0) {
+            const planet = starterPlanets[Math.floor(Math.random() * starterPlanets.length)]
+            startSystem += '/' + system.planets.indexOf(planet);
+            break;
+          }
+          tries++;
+        }
+        await User.updateOne({id: user._id, startSystem});
+      }
+
       await User.findByIdAndUpdate(user.id, token);
       const responseUser = new UserResponse(user, token);
       if (user.isAdmin) {
