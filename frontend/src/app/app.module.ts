@@ -22,6 +22,10 @@ import { OverlayComponent } from './components/overlay/overlay.component';
 import { SolarSystemComponent } from './views/dashboard/solar-system/solar-system.component';
 import { PlanetComponent } from './views/dashboard/planet/planet.component';
 import { QuadrantComponent } from './views/dashboard/quadrant/quadrant.component';
+import { GameComponent } from './views/game/game.component';
+import { SystemComponent } from './views/game/views/system/system.component';
+import { BodyComponent } from './views/game/views/body/body.component';
+import { BreadcrumpComponent } from './views/game/components/breadcrump/breadcrump.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +42,11 @@ import { QuadrantComponent } from './views/dashboard/quadrant/quadrant.component
     OverlayComponent,
     SolarSystemComponent,
     PlanetComponent,
-    QuadrantComponent
+    QuadrantComponent,
+    GameComponent,
+    SystemComponent,
+    BodyComponent,
+    BreadcrumpComponent
   ],
   imports: [
     BrowserModule,

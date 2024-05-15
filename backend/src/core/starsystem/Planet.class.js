@@ -1,4 +1,4 @@
-const PseudoRandom = require("../util/PseudoRandom");
+const PseudoRandom = require("../../utils/PseudoRandom");
 
 const PLANET_TYPES = {
     TERRESTRIALPLANET: "TerrestrialPlanet",
@@ -19,26 +19,6 @@ const STARTER_PLANETS = [
     PLANET_TYPES.HABITABLEPLANET,
     PLANET_TYPES.DESERTPLANET,
 ]
-
-function randomColor() {
-    const minHelligkeit = 200; // Mindesthelligkeit (0-255)
-    const hexBuchstaben = "0123456789ABCDEF";
-    let farbe = "#";
-
-    for (let i = 0; i < 3; i++) {
-        let hexWert = Math.floor(Math.random() * 256);
-        while (hexWert < minHelligkeit) {
-            hexWert = Math.floor(Math.random() * 256);
-        }
-        let hexString = hexWert.toString(16);
-        if (hexString.length === 1) {
-            hexString = "0" + hexString;
-        }
-        farbe += hexString;
-    }
-
-    return farbe;
-}
 
 class Planet {
     static type = PLANET_TYPES;
@@ -87,6 +67,19 @@ class Planet {
 
         return periodDays;
     }
+}
+
+const planetGridConfig = {
+    TerrestrialPlanet: {type: "procedual", maxMass: 2, minSize: 15, maxSize: 35, fillPercentage: 55 },
+    GasGiant: {type: "ring", innerRings: 7, outerRings: 10},
+    IceGiant: {type: "procedual", minSize: 30, maxSize: 50, fillPercentage: 40},
+    Exoplanet: {type: "procedual", minSize: 25, maxSize: 40, fillPercentage: 70},
+    HabitablePlanet: {type: "procedual", minSize: 25, maxSize: 40, fillPercentage: 65},
+    DesertPlanet: {type: "procedual", minSize: 25, maxSize: 4, fillPercentage: 75},
+    OceanWorld: {type: "circle", minSize: 15, maxSize: 40 },
+    HotJupiter: {type: "ring", innerRings: 9, outerRings: 12},
+    DwarfPlanet: {type: "procedual", minSize: 10, maxSize: 25, fillPercentage: 80},
+    Moon: { type: "square", minSize: 5, maxSize: 10 }
 }
 
 const planetDistances = {
@@ -157,4 +150,4 @@ function getPlanets(type, minGap, amount, sun, seed) {
     return result;
 }
 
-module.exports = {PLANET_TYPES, Planet, planetDistances, getPlanets, STARTER_PLANETS}
+module.exports = {PLANET_TYPES, Planet, planetDistances, getPlanets, STARTER_PLANETS, planetGridConfig}

@@ -1,5 +1,5 @@
 const { HexGrid } = require("../grid/Grid");
-const PseudoRandom = require("../util/PseudoRandom");
+const PseudoRandom = require("../../utils/PseudoRandom");
 const { getPlanets, planetDistances, Planet } = require("./Planet.class");
 const { StarFactory } = require("./Star.class");
 const Moon = require("../starsystem/Moon.class");
@@ -36,8 +36,7 @@ class StarSystemFactory {
             const moons = prng.choice([...new Array(50).fill(0),...new Array(100).fill(1), ...new Array(50).fill(2), ...new Array(25).fill(3), ...new Array(12).fill(4), ...new Array(6).fill(5), ...new Array(2).fill(6)]);
             const cordDef = ['a', 'b', 'c', 'd', 'e', 'f'];
             for(let i = 0; i < moons; i++) {
-                const moonSize = prng.nextRange(Moon.minSize, Moon.maxSize)
-                currentPlanet.moons.push(new Moon(moonSize, currentPlanet.coords + cordDef[i]));
+                currentPlanet.moons.push(new Moon(currentPlanet.coords + cordDef[i]));
             }
             planetTile.body = currentPlanet;
         }

@@ -5,11 +5,18 @@
 
 /backend/src/data/
 
+/node_modules
+
 # Compiled output
 /frontend/dist
 /frontend/tmp
 /frontend/out-tsc
 /frontend/bazel-out
+
+# Playground
+/playground
+
+#shared
 
 # Node
 /frontend/node_modules

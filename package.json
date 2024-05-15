@@ -1,0 +1,16 @@
+{
+  "name": "FourFronts Workspace",
+  "workspaces": [
+    "frontend",
+    "backend",
+    "shared"
+  ],
+  "dependencies": {
+    "honeycomb-grid": "^4.1.5",
+    "rxjs": "^7.8.1",
+    "three": "^0.163.0"
+  },
+  "devDependencies": {
+    "@types/three": "^0.163.0"
+  }
+}

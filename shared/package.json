@@ -1,0 +1,38 @@
+{
+    "name": "shared-modules",
+    "private": true,
+    "version": "1.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "lint": "eslint . --ext .ts",
+        "build": "vite build",
+        "build:watch": "vite build --watch"
+    },
+    "devDependencies": {
+        "@types/three": "^0.163.0",
+        "typescript": "^5.0.2",
+        "vite": "^4.4.5",
+        "vite-plugin-dts": "^3.5.2",
+        "vue-eslint-parser": "^9.3.1"
+    },
+    "main": "./lib/shared-modules.umd.cjs",
+    "module": "./lib/shared-modules.js",
+    "exports": {
+        ".": {
+            "types": "./lib/index.d.ts",
+            "import": "./lib/shared-modules.js",
+            "require": "./lib/shared-modules.umd.cjs"
+        },
+        "./lib/style.css": {
+            "import": "./lib/style.css",
+            "require": "./lib/style.css"
+        }
+    },
+    "typings": "./lib/index.d.ts",
+    "dependencies": {
+        "honeycomb-grid": "^4.1.5",
+        "rxjs": "^7.8.1",
+        "three": "^0.163.0"
+    }
+}

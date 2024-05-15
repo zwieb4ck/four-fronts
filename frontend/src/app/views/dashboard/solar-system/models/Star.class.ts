@@ -20,6 +20,7 @@ export class Star {
   public mesh!: Mesh;
   public color: Color = new Color('#000000');
   public static type: STAR_TYPES;
+  public coords: string = "";
   protected astronomicalUnit: number = 10;
 
   public static getRandomGravity() {

@@ -1,4 +1,4 @@
-const PseudoRandom = require("../util/PseudoRandom");
+const PseudoRandom = require("../../utils/PseudoRandom");
 
 const STAR_TYPES = {
   MAIN_SEQUENCE: 'MainSequenceStar',

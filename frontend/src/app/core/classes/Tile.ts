@@ -1,3 +1,4 @@
+import { Moon } from 'src/app/views/dashboard/solar-system/models/Moon.class';
 import { Planet } from 'src/app/views/dashboard/solar-system/models/Planet.class';
 import { Star } from 'src/app/views/dashboard/solar-system/models/Star.class';
 import { Vector2 } from 'three';
@@ -63,7 +64,7 @@ export class Tile {
   public hexRadius: number = 0;
   public image: any = null;
   public imageLoaded = false;
-  public body: Star | Planet | null = null;
+  public body: Star | Planet | Moon | null = null;
 
   constructor(
     public context: CanvasRenderingContext2D,
@@ -146,6 +147,10 @@ export class Tile {
       const x = this.pos.x + this.hexRectangleWidth / 2 - size / 2;
       const y = this.pos.y + this.hexRectangleHeight / 2 - size / 2;
       this.context.drawImage(this.image, x, y, size, size);
+    }
+    if (!this.imageLoaded && this.fill) {
+      this.context.fillStyle = "rgba(255,255,255,0.1"
+      this.context.fill();
     }
   }
 

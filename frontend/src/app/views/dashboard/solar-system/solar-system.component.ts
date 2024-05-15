@@ -1,10 +1,10 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
-import { HexGrid } from 'src/app/core/classes/Grid';
+import { HexGrid } from 'src/app/core/classes/HexGrid';
 import { Tile } from 'src/app/core/classes/Tile';
 import PseudoRandom from 'src/app/core/utils/PseudoRandom';
 import { Vector2 } from 'three';
 import SolarSystemService from './solar-system.service';
-import { ActivatedRoute, Route } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-solar-system',
@@ -39,7 +39,8 @@ export class SolarSystemComponent implements OnInit {
   constructor(
     private elm: ElementRef,
     private solarService: SolarSystemService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {
     this.route.params.subscribe((params) => {
       this.seed = `${params['quadrant']}/${params['system']}`;
@@ -62,6 +63,9 @@ export class SolarSystemComponent implements OnInit {
           this.grid?.grid.flat().forEach((tile: Tile) => {
             if (tile.isPointInHexagon(point)) {
               // tile.makeGreen();
+              if (tile.body && tile.body.coords !== undefined) {
+                this.router.navigate(['dashboard', ...tile.body.coords.split("/")])
+              }
             }
           });
         }

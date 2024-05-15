@@ -7,9 +7,12 @@ import { RegisterComponent } from 'src/app/views/register/register.component';
 import { NotFoundComponent } from 'src/app/views/not-found/not-found.component';
 import { UnauthorizedComponent } from 'src/app/views/unauthorized/unauthorized.component';
 import { ForgotPasswordComponent } from 'src/app/views/login/forgot-password/forgot-password.component';
-import { SolarSystemComponent } from 'src/app/views/dashboard/solar-system/solar-system.component';
+// import { SolarSystemComponent } from 'src/app/views/dashboard/solar-system/solar-system.component';
 import { PlanetComponent } from 'src/app/views/dashboard/planet/planet.component';
-import { QuadrantComponent } from 'src/app/views/dashboard/quadrant/quadrant.component';
+import { QuadrantComponent } from 'src/app/views/game/views/quadrant/quadrant.component';
+import { SystemComponent } from 'src/app/views/game/views/system/system.component';
+import { BodyComponent } from 'src/app/views/game/views/body/body.component';
+import { GameComponent } from 'src/app/views/game/game.component';
 
 const routes: Routes = [
   {
@@ -19,28 +22,29 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    component: DashboardPageComponent,
+    // redirectTo: '/game'
+    component: DashboardPageComponent, 
     children: [
       {
-        path: ':quadrant',
-        component: QuadrantComponent,
-      },
-      {
         path: ':quadrant/:system',
-        component: SolarSystemComponent,
-        data: {
-          name: 'SolarSystem',
-        }
-        
-      },
-      {
-        path: ':quadrant/:system/:planet',
-        component: PlanetComponent,
-        data: {
-          name: 'Planet',
-        }
+        component: PlanetComponent
       }
-
+    ]
+  },
+  {
+    path: 'game',
+    component: GameComponent,
+    children: [
+      {
+        path: ":quadrant",
+        component: QuadrantComponent,
+      }, {
+        path:":quadrant/:system",
+        component: SystemComponent
+      }, {
+        path: ":quadrant/:system/:body",
+        component: BodyComponent,
+      }
     ]
   },
   {

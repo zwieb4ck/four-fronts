@@ -1,0 +1,10 @@
+<nav>
+<ul class="nav__list">
+    <li class="nav__item" *ngFor="let crump of breadcrumps">
+        <a [routerLink]="crump.link" href="" class="nav__link">
+            <div class="nav__thumb color1" data-letter="p"></div>
+            <p class="nav__label">{{crump.label}}</p>
+        </a>
+    </li>
+</ul>
+</nav>

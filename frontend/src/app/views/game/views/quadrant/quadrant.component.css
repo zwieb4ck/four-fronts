@@ -1,0 +1,26 @@
+:host {
+    height: 100%;
+    width: 100%;
+    displaY: block;
+}
+
+#background,#grid, #foreground, #ui {
+    display: block;
+    height: calc(100% - 60px);
+    width: 100%;
+    position: absolute;
+}
+
+#background  {
+    background-color: black;
+}
+
+
+.debug {
+    position: absolute;
+    top: 100;
+    left: 15;
+    z-index: 22;
+    padding: 20px;
+    background: red;
+}

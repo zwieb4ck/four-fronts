@@ -37,7 +37,9 @@ function randomColor() {
 export class Planet {
     public mesh!: Mesh;
     public color: Color = new Color('#000000');
-public planetObj: Object3D;
+    public planetObj: Object3D;
+    public coords: string = "";
+    public grid: any[][] = [[]]
     public static type: PLANET_TYPES;
 
     public static getRandomGravity() {
